@@ -150,7 +150,7 @@ Before you can install Rails, you'll need to apply an update for [RubyGems](http
 
     This will list all the contents of your Downloads directory. It might be a little messy, but somewhere in there you should see a file named `rubygems-update-2.6.7.gem`.
 
-    The full path to the RubyGems update is `C:\Users\USERNAME\Downloads` where USERNAME is your username.
+    The full path to the RubyGems update is `C:\Users\USERNAME\Downloads\rubygems-update-2.6.7.gem` where USERNAME is your username.
 
 1.  If you've found the RubyGems update file in your Downloads directory, you can move on to the next step.
 
@@ -169,6 +169,12 @@ C:\Users\awesomesauce>ls -l Downloads
 -rwxr-xr-x 1 IEUser Administrators 18667740 Feb 11 13:22 rubyinstaller-2.3.1.exe
 {% endhighlight %}
 {% endsteps %}
+
+{% protip %}
+The `devkitvars.bat` file that ships with the RubyInstaller DevKit gives you access to commands you typically only find on Linux machines. You don't need these commands on Windows, but they can make your life (and mine) just a little bit easier. 😊
+
+In the rest of the installation guide, whenever you're asked to open the Command Prompt please run `C:\RubyDevKit\devkitvars.bat`.
+{% endprotip %}
 
 {% steps %}
 {% list %}
