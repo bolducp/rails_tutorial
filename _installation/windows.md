@@ -7,23 +7,25 @@ layout: rails_installation
   {{ page.title }}
 {% endsectionheader %}
 
-{% aside %}
-## Minimum Requirements
-
-In order to successfully follow these installation instructions, you must have access to an Administrator user with rights to change your computer's properties.
-{% enaside %}
+{% protip %}
+Before you work through the installation instructions, make sure you have an Administrator user who has rights to change your computer's settings.
+{% endprotip %}
 
 {% steps %}
 {% list %}
-First, we'll start by downloading Node.js. Rails needs a JavaScript runtime to run, and Node.js is a pretty popular one 😉
+First, we'll start by downloading [Node.js](https://nodejs.org/en/). You need a JavaScript runtime to run Rails, and Node.js is a pretty popular one 😉
 
-1.  Go to the [Node.js download page](https://nodejs.org/en/download/) and download the Node.js Windows installer.
+1.  [Click here](https://nodejs.org/dist/v6.9.5/node-v6.9.5-x86.msi) to download the Node.js Windows installer.
 
-1.  Once the download is finished, go to your downloads folder and run the Node.js installer.
+1.  Once the download is finished, go to your Downloads directory and find the Node.js Windows Installer. The file should be named something like `node-v6.9.5-x86.msi`.
 
-    Read the full license agreement, accept the terms, and run through the rest of the wizard leaving all the defaults.
+1.  Double click the file to run the installer.
 
-    Click "Yes" when Windows asks you if you want to allow the changes to your computer.
+    Accept the license agreement and keep all the default settings.
+
+    If Windows asks you if you want to let the installer install software on your computer, click "Yes".
+
+    ![Windows software installation dialog](screenshot.jpg)
 {% endlist %}
 {% endsteps %}
 
@@ -31,35 +33,44 @@ First, we'll start by downloading Node.js. Rails needs a JavaScript runtime to r
 {% list %}
 Now, we're going to install Ruby using the [RubyInstaller for Windows](https://rubyinstaller.org/).
 
-1.  To download the Ruby Installer,[click here](http://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.1.exe){:target='blank'}
+1.  [Click here](http://dl.bintray.com/oneclick/rubyinstaller/rubyinstaller-2.3.1.exe) to download the Ruby Installer.
 
-1.  When the download finishes, go to your downloads folder, and run the RubyInstaller to install Ruby 2.3.1 on your computer.
+1.  When the download finishes, go to your Downloads directory, and find the RubyInstaller. It should be named something like `rubyinstaller-2.3.1.exe`.
 
-1.  When the installation wizard starts, agree to the license agreement and click "Next".
+1.  Double click to the file to run the installer.
 
-1.  On the next screen, you can leave the default install destination but you must check the "Add Ruby executables to your PATH" option.
+    You can keep most of the default settings, but on the third screen of the RubyInstaller you will need to check the option to "Add Ruby executables to your PATH".
 
-    ![Check this box](screenshot.jpg)
+    ![RubyInstaller with option to "Add Ruby executables to your PATH" selected](screenshot.jpg)
 
-    After you've checked "Add Ruby executables to your PATH", click "Install".
-
-1.  Once the install finishes, click "Finish".
+    When the RubyInstaller finishes your computer will have Ruby 2.3.1.
 {% endlist %}
 {% endsteps %}
 
 {% steps %}
 {% list %}
-Now, we'll open Command Prompt to verify your Ruby install.
+Let's verify that the RubyInstaller *actually* installed Ruby 2.3.1 by taking a look on the Command Prompt.
 
 1.  There are a number of ways to open Command Prompt in Windows, but I'm lazy so I just like to search for it.
 
-    From the search bar, type "Command Prompt". It should be the first item in your search results.
+    From the search bar, type "Command Prompt". The Command Prompt should be the first item in your search results.
 
-    With Command Prompt selected in your search results, press `Enter` to open it.
+    ![Windows search results for "Command Prompt"](screenshot.jpg)
 
-1.  To verify your Ruby install, type `ruby -v` into the Command Prompt and press `Enter`. It should print "ruby 2.3.1p112" into your Command Prompt.
+    Then, you can open the Command Prompt from your search results.
 
-    If you don't get "ruby 2.3.1p112", try re-running the RubyInstaller and make sure you have the "Add Ruby executables to you PATH" option selected.
+1.  To verify your Ruby install, type `ruby -v` into the Command Prompt and press `Enter`.
+
+    `ruby -v` will print the complete version information for the version of Ruby installed on your computer.
+
+    If the RubyInstaller did its job, `ruby -v` should print at least "ruby 2.3.1".
+
+    ```shell
+    ruby -v
+    ruby 2.3.1p112 (2016-04-26 revision 54768) [i386-mingw32]
+    ```
+
+    If you don't see something like "ruby 2.3.1", try re-running the RubyInstaller and make sure you have the "Add Ruby executables to you PATH" option selected.
 {% endlist %}
 
 {% highlight shell %}
@@ -72,18 +83,33 @@ ruby 2.3.1p112 (2016-04-26 revision 54768) [i386-mingw32]
 {% list %}
 To make your development experience just a little bit nicer, we'll now install the [RubyInstaller DevKit](https://rubyinstaller.org/add-ons/devkit/).
 
-1.  To download the RubyInstaller DevKit, [click here](http://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe){:target='blank'}.
+1.  [Click here](http://dl.bintray.com/oneclick/rubyinstaller/DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe) to download the RubyInstaller DevKit.
 
-1.  Once the download is finished, go to your downloads folder and find the DevKit package. It will be named something like `DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe`.
+1.  Once the download is finished, go to your Downloads directory and find the DevKit package. It should be named something like `DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe`.
 
-    Run the package and extract it to `C:\RubyDevKit`.
+1.  Double click the file to install the DevKit.
 
-1.  Now, open the Command Prompt and run the following commands:
+    When prompted, extract the contents of the DevKit into `C:\RubyDevKit`.
+
+    ![Dialog to extract the RubyInstaller DevKit into C:\RubyDevKit](screenshot.jpg)
+
+1.  To install the DevKit we'll need to run a couple of commands. Open the Command Prompt.
+
+    First, run
 
     ```shell
     ruby C:\RubyDevKit\dk.rb init
+    ```
+
+    to initialize the DevKit.
+
+    Then, run
+
+    ```shell
     ruby C:\RubyDevKit\dk.rb install
     ```
+
+    to install it on your computer.
 {% endlist %}
 
 {% highlight shell %}
@@ -99,21 +125,57 @@ C:\Users\awesomesauce>ruby C:\RubyDevKit\dk.rb install
 {% endsteps %}
 
 {% steps %}
+{% list %}
 Before you can install Rails, you'll need to apply an update for [RubyGems](http://guides.rubygems.org/ssl-certificate-update/).
 
-{% list %}
-1.  [Click here](https://rubygems.org/downloads/rubygems-update-2.6.7.gem){:target='blank'} to download the update.
+1.  [Click here](https://rubygems.org/downloads/rubygems-update-2.6.7.gem) to download the RubyGems update.
 
-    Take a note of where the update file gets downloaded. Most likely, it will get downloaded to your download directory.
-
-    For example if your username was "awesomesauce", the path to your download directory would be `C:\Users\awesomesauce\downloads`.
+    Just like the previous things you downloaded, the RubyGems update will also be downloaded into your Downloads directory.
 
 1.  After the download finishes, open Command Prompt.
 
-1.  Now, install the update file by running the following command. However, you will have to replace "awesomesauce" with your username.
+1.  Let's see if we can find the RubyGems update file from the Command Prompt.
+
+    The RubyInstaller DevKit includes some additional commands that you can run on the Command Prompt. To make these commands available, run the following:
 
     ```shell
-    gem install --local C:\Users\awesomesauce\downloads\rubygems-update-2.6.7.gem --no-document
+    C:\RubyDevKit\devkitvars.bat
+    ```
+
+1.  Now, try running the following command:
+
+    ```shell
+    ls -l Downloads
+    ```
+
+    This will list all the contents of your Downloads directory. It might be a little messy, but somewhere in there you should see a file named `rubygems-update-2.6.7.gem`.
+
+    The full path to the RubyGems update is `C:\Users\USERNAME\Downloads` where USERNAME is your username.
+
+1.  If you've found the RubyGems update file in your Downloads directory, you can move on to the next step.
+
+    Otherwise, you'll need to download the RubyGems update and make sure it's in your Donwloads directory.
+{% endlist %}
+
+{% highlight shell %}
+C:\Users\awesomesauce>C:\RubyDevKit\devkitvars.bat
+Adding the DevKit to PATH...
+
+C:\Users\awesomesauce>ls -l Downloads
+-rwxr-xr-x 1 IEUser Administrators 39895023 Feb 11 13:37 DevKit-mingw64-32-4.7.2-20130224-1151-sfx.exe
+-rw-r--r-- 1 IEUser Administrators      282 Nov 23  2014 desktop.ini
+-rw-r--r-- 1 IEUser Administrators 11485184 Feb 11 13:15 node-v6.9.5-x86.msi
+-rw-r--r-- 1 IEUser Administrators   727040 Feb 11 13:44 rubygems-update-2.6.7.gem
+-rwxr-xr-x 1 IEUser Administrators 18667740 Feb 11 13:22 rubyinstaller-2.3.1.exe
+{% endhighlight %}
+{% endsteps %}
+
+{% steps %}
+{% list %}
+1.  Now, we're ready to install the RubyGems update. Run the following command, but replace USERNAME with your username.
+
+    ```shell
+    gem install --local C:\Users\USERNAME\downloads\rubygems-update-2.6.7.gem --no-document
     ```
 
 1.  Then, run the update:
@@ -130,7 +192,7 @@ Before you can install Rails, you'll need to apply an update for [RubyGems](http
 
     It should return 2.6.7.
 
-1.  Now that you've run the update, you can uninstall update file. Run:
+1.  Now that you've installed the update, you can remove the update file. Run:
 
     ```shell
     gem uninstall rubygems-update -x
@@ -143,7 +205,7 @@ Successfully installed rubygems-update-2.6.7
 1 gem installed
 
 C:\Users\awesomesauce>update_rubygems --no-document
-RubyGEms 2.6.7 installed
+RubyGems 2.6.7 installed
 
 === 2.6.7 / 2016-09-26
 
@@ -175,6 +237,8 @@ Now, we're ready to install Rails! 🎉
 
     Windows Firewall may ask you to give Ruby access to public networks. If it does, click "Allow access".
 
+    ![Windows Firewall asking to give Ruby permission to the internet](screenshot.jpg)
+
 1.  To verify the install, run
 
     ```shell
@@ -203,13 +267,13 @@ Rails 5.0.1
 {% list %}
 Finally, we'll check if everything is working by creating a new Rails app.
 
-1.  Open Command Prompt and run the following command to create a new Rails app called "installfest".
+1.  Open the Command Prompt and run the following command to create a new Rails app called "installfest".
 
     ```shell
     rails new installfest
     ```
 
-    This will add a new directory name "installfest" with the contens of a new Rails application.
+    This will add a new directory to your computer named "installfest". It will have all the contents of a new Rails application.
 
 1.  From Command Prompt, go into the new "installfest" directory by running:
 
@@ -225,11 +289,16 @@ Finally, we'll check if everything is working by creating a new Rails app.
 
 1.  Go to [http://localhost:3000](http://localhost:3000) to see the running application!
 
-    ![Browser showing Yay! You're on Rails](screenshot.jpg)
+    ![Browser showing "Yay! You're on Rails"](screenshot.jpg)
 
 1.  Now that you've verified everything is working, you can stop the application by running `Ctrl-c` in the Command Prompt.
 
-    You can also remove the "installfest" directory.
+1.  You can also remove the "installfest" directory by running the following commands:
+
+    ```shell
+    cd ..
+    rm -rf installfest
+    ```
 {% endlist %}
 
 {% highlight shell %}
@@ -248,7 +317,7 @@ C:\Users\awesomesauce>rails new installfest
 
 C:\Users\awesomesauce>cd installfest
 
-C:\Users\awesomesauce>rails server
+C:\Users\awesomesauce\installfest>rails server
 => Booting Puma
 => Rails 5.0.1 application starting in development on http://localhost:3000
 ...
@@ -264,5 +333,9 @@ Completed 200 OK in 78ms (Views: 42.6ms | ActiveRecord: 0.0ms)
 
 Exiting
 Terminate batch job (Y/N)? y
+
+C:\Users\awesomesauce\installfest>cd ..
+
+C:\Users\awesomesauce>rm -rf installfest
 {% endhighlight %}
 {% endsteps %}
