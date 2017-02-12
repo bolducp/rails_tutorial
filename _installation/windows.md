@@ -181,7 +181,7 @@ In the rest of the installation guide, whenever you're asked to open the Command
 1.  Now, we're ready to install the RubyGems update. Run the following command, but replace USERNAME with your username.
 
     ```shell
-    gem install --local C:\Users\USERNAME\downloads\rubygems-update-2.6.7.gem --no-document
+    gem install --local C:\Users\USERNAME\Downloads\rubygems-update-2.6.7.gem --no-document
     ```
 
 1.  Then, run the update:
@@ -206,7 +206,7 @@ In the rest of the installation guide, whenever you're asked to open the Command
 {% endlist %}
 
 {% highlight shell %}
-C:\Users\awesomesauce>gem install --local C:\Users\awesomesauce\downloads\rubygems-update-2.6.7.gem --no-document
+C:\Users\awesomesauce>gem install --local C:\Users\awesomesauce\Downloads\rubygems-update-2.6.7.gem --no-document
 Successfully installed rubygems-update-2.6.7
 1 gem installed
 
